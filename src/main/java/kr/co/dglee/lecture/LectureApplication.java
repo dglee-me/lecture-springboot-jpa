@@ -1,13 +1,13 @@
-package kr.co.dglee.inflearnspringbootjpa1;
+package kr.co.dglee.lecture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InflearnSpringbootJpa1Application {
+public class LectureApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(InflearnSpringbootJpa1Application.class, args);
+    SpringApplication.run(LectureApplication.class, args);
   }
 
 }
