@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import kr.co.dglee.lecture.entity.Member;
+import kr.co.dglee.lecture.domain.Member;
 
 @Service
 public class MemberRepository {

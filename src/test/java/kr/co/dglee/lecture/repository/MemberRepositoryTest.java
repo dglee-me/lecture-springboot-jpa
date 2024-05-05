@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.dglee.lecture.entity.Member;
+import kr.co.dglee.lecture.domain.Member;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -19,7 +19,7 @@ class MemberRepositoryTest {
 
 	@Test
 	@Transactional
-	public void testMember() throws Exception {
+	void testMember() throws Exception {
 		// given
 		Member member = new Member();
 		member.setUsername("memberA");
