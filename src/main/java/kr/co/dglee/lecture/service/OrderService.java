@@ -1,10 +1,12 @@
 package kr.co.dglee.lecture.service;
 
+import java.util.List;
 import kr.co.dglee.lecture.domain.Member;
 import kr.co.dglee.lecture.domain.delivery.Delivery;
 import kr.co.dglee.lecture.domain.item.Item;
 import kr.co.dglee.lecture.domain.order.Order;
 import kr.co.dglee.lecture.domain.order.OrderItem;
+import kr.co.dglee.lecture.domain.order.OrderSearch;
 import kr.co.dglee.lecture.repository.ItemRepository;
 import kr.co.dglee.lecture.repository.MemberRepository;
 import kr.co.dglee.lecture.repository.OrderRepository;
@@ -59,4 +61,7 @@ public class OrderService {
   }
 
   // 주문 검색
+  public List<Order> findOrders(OrderSearch orderSearch) {
+    return orderRepository.findAllByString(orderSearch);
+  }
 }

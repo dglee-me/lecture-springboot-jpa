@@ -19,6 +19,25 @@ public class ItemService {
     itemRepository.save(item);
   }
 
+  /**
+   * 변경 감지를 통해 업데이트를 한다.
+   * <p>
+   * 영속 상태의 데이터를 불러오고, 변경이 된 데이터만 확실히 변경되도록 바꾼다.
+   * (Merge를 사용할 경우 null 등의 문제가 있을 수 있다.)
+   *
+   * @param id
+   * @param name
+   * @param price
+   * @param stockQuantity
+   */
+  @Transactional
+  public void updateItem(Long id, String name, int price, int stockQuantity) {
+    Item item = itemRepository.findById(id);
+    item.setName(name);
+    item.setPrice(price);
+    item.setStockQuantity(stockQuantity);
+  }
+
   public Item findById(Long id) {
     return itemRepository.findById(id);
   }
