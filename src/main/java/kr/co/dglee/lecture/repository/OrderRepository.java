@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kr.co.dglee.lecture.domain.order.Order;
 import kr.co.dglee.lecture.domain.order.OrderSearch;
+import kr.co.dglee.lecture.dto.OrderSimpleQueryDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -28,6 +29,23 @@ public class OrderRepository {
 
   public Order findById(Long id) {
     return em.find(Order.class, id);
+  }
+
+  public List<Order> findAllWithMemberDelivery() {
+    return em.createQuery(
+        "SELECT o FROM Order o" +
+            " JOIN FETCH o.member m" +
+            " JOIN FETCH o.delivery d", Order.class
+    ).getResultList();
+  }
+
+  public List<OrderSimpleQueryDTO> findOrderDTOs() {
+
+    return em.createQuery(
+        "SELECT new kr.co.dglee.lecture.dto.OrderSimpleQueryDTO(o.id, m.name, o.orderDate, o.status, d.address) FROM Order o" +
+            " JOIN o.member m" +
+            " JOIN o.delivery d", OrderSimpleQueryDTO.class
+    ).getResultList();
   }
 
   //== 다 최악 ==
