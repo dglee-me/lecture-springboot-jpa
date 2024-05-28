@@ -74,4 +74,9 @@ public class OrderApiController {
   public List<OrderQueryDTO> ordersV4() {
     return orderQueryRepository.findOrderQueryDTOs();
   }
+
+  @GetMapping("/api/v5/orders")
+  public List<OrderQueryDTO> ordersV5() {
+    return orderQueryRepository.findOrderQueryDTO_optimization();
+  }
 }
