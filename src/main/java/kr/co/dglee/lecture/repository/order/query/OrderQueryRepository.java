@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import kr.co.dglee.lecture.repository.order.query.dto.OrderFlatDTO;
 import kr.co.dglee.lecture.repository.order.query.dto.OrderItemQueryDTO;
 import kr.co.dglee.lecture.repository.order.query.dto.OrderQueryDTO;
 import lombok.RequiredArgsConstructor;
@@ -71,5 +72,16 @@ public class OrderQueryRepository {
                 " JOIN o.member m" +
                 " JOIN o.delivery d", OrderQueryDTO.class)
         .getResultList();
+  }
+
+  public List<OrderFlatDTO> findAllByDto_optimization() {
+    return em.createQuery(
+        "SELECT new kr.co.dglee.lecture.repository.order.query.dto.OrderFlatDTO(o.id, m.name, o.orderDate, o.status, d.address, oi.item.name, oi.orderPrice, oi.count)" +
+            " FROM Order o" +
+            " JOIN o.member m" +
+            " JOIN o.delivery d" +
+            " JOIN o.orderItems oi" +
+            " JOIN oi.item i", OrderFlatDTO.class
+    ).getResultList();
   }
 }

@@ -6,6 +6,7 @@ import kr.co.dglee.lecture.domain.order.Order;
 import kr.co.dglee.lecture.domain.order.OrderItem;
 import kr.co.dglee.lecture.domain.order.OrderSearch;
 import kr.co.dglee.lecture.dto.OrderDTO;
+import kr.co.dglee.lecture.repository.order.query.dto.OrderFlatDTO;
 import kr.co.dglee.lecture.repository.order.query.dto.OrderQueryDTO;
 import kr.co.dglee.lecture.repository.OrderRepository;
 import kr.co.dglee.lecture.repository.order.query.OrderQueryRepository;
@@ -78,5 +79,11 @@ public class OrderApiController {
   @GetMapping("/api/v5/orders")
   public List<OrderQueryDTO> ordersV5() {
     return orderQueryRepository.findOrderQueryDTO_optimization();
+  }
+
+  @GetMapping("/api/v6/orders")
+  public List<OrderFlatDTO> ordersV6() {
+    List<OrderFlatDTO> result = orderQueryRepository.findAllByDto_optimization();
+    return result;
   }
 }
